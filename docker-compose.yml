@@ -1,0 +1,13 @@
+---
+version: '3'
+services:
+  redis:
+    image: m.docker-registry.ir/redis:6.0.5-alpine3.12
+  dns:
+    image: dnsserver
+    environment:
+      REDIS_ADDR: redis:6379
+      ROOT_DNS_ADDR: 8.8.8.8
+      METRICS_ADDR: :8000
+    depends_on:
+      - redis
